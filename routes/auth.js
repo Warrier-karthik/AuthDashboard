@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
     const user = await User.find({Uname: username}).exec()
 
     if (await bcrypt.compare(password, user[0].password)) {
-        const token = jwt.sign({username: user[0].Uname}, process.env.ACCESS_TOKEN)
+        const token = jwt.sign({username: user[0].Uname}, process.env.ACCESS_TOKEN, {expiresIn:"5m"})
         res.json({message: `welcome ${username}`, token:token})
     }
 
