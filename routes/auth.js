@@ -58,7 +58,9 @@ router.post('/login', async (req, res) => {
     }
 
 })
-
+router.get('/logout', (req, res)=> {
+    res.status(200).json({message: "Successfully Loggedout"})
+})
 function authentication(req, res, next) {
     const authHeader = req.headers['authorization']
     console.log(authHeader)
